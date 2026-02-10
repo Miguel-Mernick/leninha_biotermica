@@ -1,0 +1,527 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: #f6f8fc;
+  color: #1d1d1f;
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+/* TOPBAR */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px 25px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.topbar h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* MENU */
+nav {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+nav a {
+  font-weight: 600;
+  color: #333;
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+nav a:hover {
+  background: rgba(13,110,168,0.12);
+  color: #0d6ea8;
+}
+
+/* MOBILE */
+#mobileBtn {
+  display: none;
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#menu.active {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 65px;
+  right: 15px;
+  background: white;
+  padding: 15px;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* BUTTONS */
+.btn {
+  padding: 12px 18px;
+  border-radius: 14px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s;
+  display: inline-block;
+}
+
+.primary {
+  background: linear-gradient(135deg, #0d6ea8, #00b7ff);
+  color: white;
+}
+
+.primary:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+.secondary {
+  background: rgba(0,0,0,0.06);
+  color: #222;
+}
+
+.secondary:hover {
+  background: rgba(0,0,0,0.12);
+}
+
+.danger {
+  background: #e74c3c;
+  color: white;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 90px 20px;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: 18px auto;
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+.heroBtns {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* CARDS */
+.content h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.content h2 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  transition: 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card.big {
+  margin-top: 35px;
+}
+
+.banner {
+  border-radius: 18px;
+  margin-bottom: 18px;
+}
+
+/* QUIZ */
+.quiz {
+  text-align: center;
+  padding: 30px;
+}
+
+.quiz input {
+  width: 100%;
+  max-width: 340px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.15);
+  margin: 15px auto;
+  font-size: 1rem;
+}
+
+#answers {
+  margin-top: 25px;
+  display: grid;
+  gap: 12px;
+}
+
+.progressBar {
+  width: 100%;
+  max-width: 420px;
+  height: 14px;
+  background: rgba(0,0,0,0.1);
+  border-radius: 20px;
+  margin: 20px auto;
+}
+
+#progressFill {
+  height: 100%;
+  width: 0%;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #0d6ea8, #00c6ff);
+  transition: 0.4s;
+}
+
+.correct {
+  background: #2ecc71 !important;
+  color: white;
+}
+
+.wrong {
+  background: #e74c3c !important;
+  color: white;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 18px;
+  font-size: 0.95rem;
+  opacity: 0.75;
+}
+
+/* DARK MODE */
+body.dark {
+  background: #0f1115;
+  color: white;
+}
+
+body.dark .topbar {
+  background: rgba(20,20,20,0.9);
+}
+
+body.dark nav a {
+  color: white;
+}
+
+body.dark .card {
+  background: #1b1e24;
+}
+
+body.dark .secondary {
+  background: rgba(255,255,255,0.12);
+  color: white;
+}
+
+body.dark input {
+  background: #1b1e24;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+  }
+
+  #mobileBtn {
+    display: block;
+  }
+
+  .hero {
+    padding: 60px 15px;
+  }
+}
+
+/* ====================================== */
+/* 📱 RESPONSIVIDADE PREMIUM FINAL */
+/* ====================================== */
+
+
+/* =============================== */
+/* TABLET / TELAS MÉDIAS */
+/* =============================== */
+@media (max-width: 900px) {
+
+  .main {
+    padding: 25px 15px;
+  }
+
+  .topbar {
+    padding: 14px 18px;
+  }
+
+  .topbar h2 {
+    font-size: 1rem;
+  }
+
+  .content h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .content h2 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .card.big {
+    padding: 18px;
+  }
+
+  .footer {
+    font-size: 0.9rem;
+  }
+}
+
+
+/* =============================== */
+/* 📱 MOBILE PERFEITO */
+/* =============================== */
+@media (max-width: 768px) {
+
+  /* 🔥 MENU MOBILE ORGANIZADO */
+  nav {
+    display: none;
+  }
+
+  #mobileBtn {
+    display: block;
+    font-size: 1.8rem;
+  }
+
+  #menu.active {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    position: absolute;
+    top: 70px;
+    right: 15px;
+
+    width: 90%;
+    max-width: 320px;
+
+    padding: 18px;
+    border-radius: 18px;
+
+    background: white;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+
+    animation: slideDown 0.35s ease;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  body.dark #menu.active {
+    background: #1b1e24;
+  }
+
+  /* 🔥 HERO AJUSTADO */
+  .hero {
+    padding: 55px 15px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    padding: 0 8px;
+  }
+
+  /* ✅ BOTÕES EMPILHADOS */
+  .heroBtns {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+  }
+
+  /* ✅ CARDS EM COLUNA AUTOMÁTICA */
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  /* 📘 APOSTILA MAIS CONFORTÁVEL */
+  article.card.big p,
+  article.card.big li {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* ✅ IMAGENS RESPONSIVAS */
+  .banner {
+    max-height: 200px;
+    object-fit: cover;
+  }
+
+  /* 🎮 QUIZ MOBILE CONFORTÁVEL */
+  .quiz {
+    padding: 20px 10px;
+  }
+
+  .quiz h1 {
+    font-size: 1.6rem;
+  }
+
+  .quiz input {
+    width: 95%;
+    font-size: 1rem;
+  }
+
+  #answers {
+    gap: 12px;
+  }
+
+  #answers button {
+    font-size: 1rem;
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  /* PROGRESS BAR MENOR */
+  .progressBar {
+    width: 95%;
+    height: 12px;
+  }
+
+  /* FOOTER AJUSTADO */
+  .footer {
+    padding: 15px;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+}
+
+
+/* =============================== */
+/* 📱 CELULARES PEQUENOS */
+/* =============================== */
+@media (max-width: 480px) {
+
+  /* TOPBAR ADAPTADO */
+  .topbar {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .topbar a {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  /* HERO MENOR */
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+
+  /* CARDS MAIS LEVES */
+  .card {
+    padding: 15px;
+  }
+
+  /* QUIZ INPUT */
+  .quiz input {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+
+  /* FOOTER MENOR */
+  .footer {
+    font-size: 0.8rem;
+  }
+}
