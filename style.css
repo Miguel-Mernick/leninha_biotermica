@@ -279,30 +279,38 @@ body.dark .card {
 @media (max-width: 768px) {
 
   .carousel {
-    height: 260px;
-    perspective: none; /* remove 3D pesado */
+    perspective: none !important;
+    height: auto;
   }
 
   .carousel-track {
-    transform-style: flat;
-    display: flex;
-    gap: 20px;
+    display: flex !important;
+    gap: 0;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding: 20px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    transform: none !important;
+  }
+
+  .carousel-track::-webkit-scrollbar {
+    display: none;
   }
 
   .plant-card {
-    position: relative;
-    flex: 0 0 220px;
-    top: auto;
-    left: auto;
+    position: relative !important;
+    flex: 0 0 100%;
+    max-width: 100%;
+    top: auto !important;
+    left: auto !important;
     transform: none !important;
     scroll-snap-align: center;
   }
 
-  .carousel::after {
-    display: none; /* remove luz dinâmica no mobile */
+  .carousel-btn,
+  .prev,
+  .next {
+    display: none !important;
   }
 
   .prev, .next {
@@ -328,23 +336,6 @@ body.dark .card {
   .carousel {
     perspective: none;
     height: auto;
-  }
-
-  .carousel-track {
-    position: relative;
-    transform: none !important;
-    display: flex;
-    overflow-x: auto;
-    gap: 16px;
-    padding: 20px;
-  }
-
-  .plant-card {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none !important;
-    flex: 0 0 260px;
   }
 
   .carousel::after {

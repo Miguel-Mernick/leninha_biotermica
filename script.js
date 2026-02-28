@@ -274,14 +274,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".plant-card");
 
   if (cards.length > 0) {
-    updateCarouselCircle();
-    startAutoRotate();
 
-    const carousel = document.querySelector(".carousel");
-    if (carousel) {
-      carousel.addEventListener("mouseenter", stopAutoRotate);
-      carousel.addEventListener("mouseleave", startAutoRotate);
+    if (window.innerWidth > 768) {
+      updateCarouselCircle();
+      startAutoRotate();
+
+      const carousel = document.querySelector(".carousel");
+      if (carousel) {
+        carousel.addEventListener("mouseenter", stopAutoRotate);
+        carousel.addEventListener("mouseleave", startAutoRotate);
+      }
     }
+
   }
 
   createParticles();
