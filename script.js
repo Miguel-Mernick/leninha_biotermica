@@ -219,10 +219,31 @@ window.resetRanking = function() {
   }
 };
 
-/* ================= INIT ================= */
-
 if (qEl) loadQuestion();
 if (document.getElementById("rankingList")) showRanking();
+
+/* ================= INIT CARROSSEL ================= */
+
+const cards = document.querySelectorAll(".plant-card");
+const carousel = document.querySelector(".carousel");
+
+if (cards.length > 0 && window.innerWidth > 768) {
+  updateCarouselCircle();
+  startAutoRotate();
+
+  if (carousel) {
+    carousel.addEventListener("mouseenter", stopAutoRotate);
+    carousel.addEventListener("mouseleave", startAutoRotate);
+  }
+} else {
+  stopAutoRotate();
+  cards.forEach(card => {
+    card.style.transform = "none";
+  });
+}
+
+createParticles();
+
 
 });
 
@@ -268,28 +289,6 @@ function startAutoRotate() {
 function stopAutoRotate() {
   clearInterval(autoRotate);
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  const cards = document.querySelectorAll(".plant-card");
-
-  if (cards.length > 0) {
-
-    if (window.innerWidth > 768) {
-      updateCarouselCircle();
-      startAutoRotate();
-
-      const carousel = document.querySelector(".carousel");
-      if (carousel) {
-        carousel.addEventListener("mouseenter", stopAutoRotate);
-        carousel.addEventListener("mouseleave", startAutoRotate);
-      }
-    }
-
-  }
-
-  createParticles();
-});
 /* ================= INFORMAÇÕES DAS USINAS ================= */
 
 const plantInfo = [
@@ -342,35 +341,25 @@ function createParticles() {
   }
 } 
 
-/* ================= INIT CARROSSEL ================= */
+/* ================= SEGURANÇA MOBILE ================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("resize", () => {
 
   const cards = document.querySelectorAll(".plant-card");
 
-  if (cards.length > 0 && window.innerWidth > 768) {
+  if (window.innerWidth <= 768) {
+
+    stopAutoRotate();
+
+    cards.forEach(card => {
+      card.style.transform = "none";
+    });
+
+  } else {
 
     updateCarouselCircle();
     startAutoRotate();
 
-    const carousel = document.querySelector(".carousel");
-
-    if (carousel) {
-      carousel.addEventListener("mouseenter", stopAutoRotate);
-      carousel.addEventListener("mouseleave", startAutoRotate);
-    }
   }
 
-});
-
-/* ================= SEGURANÇA MOBILE ================= */
-
-window.addEventListener("resize", () => {
-  if (window.innerWidth <= 768) {
-    stopAutoRotate();
-
-    document.querySelectorAll(".plant-card").forEach(card => {
-      card.style.transform = "none";
-    });
-  }
 });
