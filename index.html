@@ -27,10 +27,16 @@
     <button id="themeBtn">🌙</button>
   </nav>
 
-  <button id="mobileBtn">☰</button>
+<button id="mobileBtn" class="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
 </header>
 
 <main class="main">
+
+  
 
 <section class="hero fade-up">
   <h1>Energia Sustentável para o Futuro</h1>
@@ -45,13 +51,66 @@
   </div>
 </section>
 
+<section class="plants-section">
+  <h2>Exemplos de Usinas</h2>
+
+  <div class="carousel">
+
+  <button class="carousel-btn prev" onclick="prevSlide()">❮</button>
+
+  <div class="carousel-track" id="carouselTrack">
+
+    <!-- BIOMASSA -->
+
+    <div class="plant-card" onclick="showInfo(0)">
+      <img src="img/drax.jpg" alt="Drax Power Station">
+      <h3>Drax Power Station (Reino Unido)</h3>
+    </div>
+
+    <div class="plant-card" onclick="showInfo(1)">
+      <img src="img/raizen.jpg" alt="Usinas Raízen">
+      <h3>Usinas Raízen (Brasil)</h3>
+    </div>
+
+    <!-- GEOTÉRMICA -->
+
+    <div class="plant-card" onclick="showInfo(2)">
+      <img src="img/hellisheidi.jpg" alt="Hellisheiði">
+      <h3>Hellisheiði (Islândia)</h3>
+    </div>
+
+    <div class="plant-card" onclick="showInfo(3)">
+      <img src="img/the-geysers.jpg" alt="The Geysers">
+      <h3>The Geysers (EUA)</h3>
+    </div>
+
+  </div>
+
+  <button class="carousel-btn next" onclick="nextSlide()">❯</button>
+
+</div>
+
+    <button class="carousel-btn next" onclick="nextSlide()">❯</button>
+
+  </div>
+
+  <!-- Modal de informação -->
+  <div class="modal" id="plantModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">×</span>
+      <h3 id="modalTitle"></h3>
+      <p id="modalText"></p>
+    </div>
+  </div>
+
+</section>
+
 <section class="content fade-up">
   <h2>🌱 O que você vai aprender?</h2>
 
   <div class="cards">
 
     <div class="card">
-      <img src="" alt="Biomassa">
       <h3>♻️ Biomassa</h3>
       <p>
         Energia gerada a partir de resíduos orgânicos como madeira,
@@ -60,7 +119,6 @@
     </div>
 
     <div class="card">
-      <img src="" alt="Energia Geotérmica">
       <h3>🌋 Energia Geotérmica</h3>
       <p>
         Energia obtida do calor interno da Terra,
@@ -80,3 +138,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+
