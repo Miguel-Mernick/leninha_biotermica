@@ -342,3 +342,35 @@ function createParticles() {
   }
 } 
 
+/* ================= INIT CARROSSEL ================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const cards = document.querySelectorAll(".plant-card");
+
+  if (cards.length > 0 && window.innerWidth > 768) {
+
+    updateCarouselCircle();
+    startAutoRotate();
+
+    const carousel = document.querySelector(".carousel");
+
+    if (carousel) {
+      carousel.addEventListener("mouseenter", stopAutoRotate);
+      carousel.addEventListener("mouseleave", startAutoRotate);
+    }
+  }
+
+});
+
+/* ================= SEGURANÇA MOBILE ================= */
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth <= 768) {
+    stopAutoRotate();
+
+    document.querySelectorAll(".plant-card").forEach(card => {
+      card.style.transform = "none";
+    });
+  }
+});
