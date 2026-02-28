@@ -26,12 +26,10 @@ applyTheme();
 const mobileBtn = document.getElementById("mobileBtn");
 const menu = document.getElementById("menu");
 
-if (mobileBtn && menu) {
-  mobileBtn.addEventListener("click", () => {
-    menu.classList.toggle("active");
-    mobileBtn.classList.toggle("active");
-  });
-}
+mobileBtn.addEventListener("click", () => {
+  mobileBtn.classList.toggle("active");
+  menu.classList.toggle("active");
+});
 
 /* ================= QUIZ (5 BIOMASSA + 5 GEOTÉRMICA) ================= */
 

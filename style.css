@@ -531,3 +531,38 @@ body.dark .modal-content h3 {
 body.dark .close {
   color: #ffffff;
 }
+
+@media (max-width: 768px) {
+
+  .carousel {
+    height: 260px;
+    perspective: none; /* remove 3D pesado */
+  }
+
+  .carousel-track {
+    transform-style: flat;
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 20px;
+  }
+
+  .plant-card {
+    position: relative;
+    flex: 0 0 220px;
+    top: auto;
+    left: auto;
+    transform: none !important;
+    scroll-snap-align: center;
+  }
+
+  .carousel::after {
+    display: none; /* remove luz dinâmica no mobile */
+  }
+
+  .prev, .next {
+    display: none; /* remove setas no celular */
+  }
+
+}
