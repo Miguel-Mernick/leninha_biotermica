@@ -1,4 +1,6 @@
-
+/* ====================================== */
+/* RESET */
+/* ====================================== */
 
 * {
   margin: 0;
@@ -11,11 +13,13 @@ html {
 }
 
 body {
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Poppins", system-ui, sans-serif;
   background: #f6f8fc;
   color: #1d1d1f;
   line-height: 1.6;
+  letter-spacing: 0.3px;
   transition: background 0.3s, color 0.3s;
+  overflow-x: hidden;
 }
 
 img {
@@ -41,28 +45,57 @@ a {
   padding: 40px 20px;
 }
 
+/* ====================================== */
+/* TIPOGRAFIA */
+/* ====================================== */
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+h3 {
+  font-weight: 600;
+}
+
+p {
+  font-size: 1.05rem;
+  opacity: 0.9;
+  margin-bottom: 12px;
+}
+
+/* ====================================== */
 /* TOPBAR */
+/* ====================================== */
+
 .topbar {
   position: sticky;
   top: 0;
-  z-index: 99;
-  background: rgba(255, 255, 255, 0.9);
+  z-index: 999;
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   padding: 16px 25px;
   border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 
 .topbar h2 {
   font-size: 1.1rem;
-  font-weight: 700;
 }
 
+/* ====================================== */
 /* MENU */
+/* ====================================== */
+
 nav {
   display: flex;
   gap: 14px;
@@ -82,28 +115,47 @@ nav a:hover {
   color: #0d6ea8;
 }
 
-/* MOBILE */
 #mobileBtn {
   display: none;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   background: none;
   border: none;
   cursor: pointer;
 }
 
+/* MENU LATERAL MOBILE */
+
+#menu {
+  transition: 0.3s ease;
+}
+
 #menu.active {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 65px;
-  right: 15px;
+  gap: 16px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 75%;
+  max-width: 320px;
+  padding: 80px 25px;
   background: white;
-  padding: 15px;
-  border-radius: 16px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  box-shadow: -10px 0 40px rgba(0,0,0,0.2);
+  border-radius: 30px 0 0 30px;
+  animation: slideMenu 0.3s ease;
+  z-index: 1000;
 }
 
-/* BUTTONS */
+@keyframes slideMenu {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* ====================================== */
+/* BOTÕES */
+/* ====================================== */
+
 .btn {
   padding: 12px 18px;
   border-radius: 14px;
@@ -138,22 +190,18 @@ nav a:hover {
   color: white;
 }
 
+/* ====================================== */
 /* HERO */
+/* ====================================== */
+
 .hero {
   text-align: center;
   padding: 90px 20px;
 }
 
-.hero h1 {
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 800;
-}
-
 .hero p {
   max-width: 650px;
   margin: 18px auto;
-  font-size: 1.1rem;
-  opacity: 0.85;
 }
 
 .heroBtns {
@@ -164,16 +212,9 @@ nav a:hover {
   flex-wrap: wrap;
 }
 
+/* ====================================== */
 /* CARDS */
-.content h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-.content h2 {
-  font-size: 1.6rem;
-  margin-bottom: 15px;
-}
+/* ====================================== */
 
 .cards {
   display: grid;
@@ -183,9 +224,9 @@ nav a:hover {
 
 .card {
   background: white;
-  border-radius: 18px;
+  border-radius: 22px;
   padding: 22px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
   transition: 0.25s;
 }
 
@@ -202,10 +243,15 @@ nav a:hover {
   margin-bottom: 18px;
 }
 
-/* QUIZ */
+/* ====================================== */
+/* QUIZ PREMIUM */
+/* ====================================== */
+
 .quiz {
   text-align: center;
   padding: 30px;
+  max-width: 500px;
+  margin: auto;
 }
 
 .quiz input {
@@ -222,6 +268,14 @@ nav a:hover {
   margin-top: 25px;
   display: grid;
   gap: 12px;
+}
+
+#answers button {
+  transition: all 0.25s ease;
+}
+
+#answers button:hover {
+  transform: translateY(-3px);
 }
 
 .progressBar {
@@ -244,14 +298,33 @@ nav a:hover {
 .correct {
   background: #2ecc71 !important;
   color: white;
+  animation: correctAnim 0.4s ease;
 }
 
 .wrong {
   background: #e74c3c !important;
   color: white;
+  animation: wrongAnim 0.4s ease;
 }
 
+@keyframes correctAnim {
+  0% { transform: scale(0.95); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes wrongAnim {
+  0% { transform: translateX(-5px); }
+  25% { transform: translateX(5px); }
+  50% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}
+
+/* ====================================== */
 /* FOOTER */
+/* ====================================== */
+
 .footer {
   text-align: center;
   padding: 18px;
@@ -259,14 +332,17 @@ nav a:hover {
   opacity: 0.75;
 }
 
+/* ====================================== */
 /* DARK MODE */
+/* ====================================== */
+
 body.dark {
   background: #0f1115;
   color: white;
 }
 
 body.dark .topbar {
-  background: rgba(20,20,20,0.9);
+  background: rgba(20,20,20,0.95);
 }
 
 body.dark nav a {
@@ -275,6 +351,7 @@ body.dark nav a {
 
 body.dark .card {
   background: #1b1e24;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
 }
 
 body.dark .secondary {
@@ -288,8 +365,16 @@ body.dark input {
   border: 1px solid rgba(255,255,255,0.2);
 }
 
-/* RESPONSIVE */
+body.dark #menu.active {
+  background: #141821;
+}
+
+/* ====================================== */
+/* RESPONSIVO */
+/* ====================================== */
+
 @media (max-width: 768px) {
+
   nav {
     display: none;
   }
@@ -298,232 +383,47 @@ body.dark input {
     display: block;
   }
 
-  .hero {
-    padding: 60px 15px;
+  body {
+    background: #eef2f7;
   }
-}
 
-/* ====================================== */
-/* 📱 RESPONSIVIDADE PREMIUM FINAL */
-/* ====================================== */
-
-
-/* =============================== */
-/* TABLET / TELAS MÉDIAS */
-/* =============================== */
-@media (max-width: 900px) {
+  body.dark {
+    background: #0c0f14;
+  }
 
   .main {
-    padding: 25px 15px;
-  }
-
-  .topbar {
-    padding: 14px 18px;
-  }
-
-  .topbar h2 {
-    font-size: 1rem;
-  }
-
-  .content h1 {
-    font-size: 1.8rem;
+    padding: 20px 15px 80px 15px;
     text-align: center;
   }
 
-  .content h2 {
-    font-size: 1.4rem;
-    text-align: center;
+  .cards {
+    grid-template-columns: 1fr;
   }
 
-  .card.big {
-    padding: 18px;
-  }
-
-  .footer {
-    font-size: 0.9rem;
-  }
-}
-
-
-/* =============================== */
-/* 📱 MOBILE PERFEITO */
-/* =============================== */
-@media (max-width: 768px) {
-
-  /* 🔥 MENU MOBILE ORGANIZADO */
-  nav {
-    display: none;
-  }
-
-  #mobileBtn {
-    display: block;
-    font-size: 1.8rem;
-  }
-
-  #menu.active {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-
-    position: absolute;
-    top: 70px;
-    right: 15px;
-
-    width: 90%;
-    max-width: 320px;
-
-    padding: 18px;
-    border-radius: 18px;
-
-    background: white;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-
-    animation: slideDown 0.35s ease;
-  }
-
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-15px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  body.dark #menu.active {
-    background: #1b1e24;
-  }
-
-  /* 🔥 HERO AJUSTADO */
   .hero {
     padding: 55px 15px;
   }
 
-  .hero h1 {
-    font-size: 2rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-    padding: 0 8px;
-  }
-
-  /* ✅ BOTÕES EMPILHADOS */
   .heroBtns {
     flex-direction: column;
     align-items: center;
-    gap: 12px;
   }
 
   .btn {
     width: 100%;
     max-width: 320px;
-    text-align: center;
   }
 
-  /* ✅ CARDS EM COLUNA AUTOMÁTICA */
-  .cards {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  .card {
-    padding: 18px;
-  }
-
-  /* 📘 APOSTILA MAIS CONFORTÁVEL */
-  article.card.big p,
-  article.card.big li {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-
-  /* ✅ IMAGENS RESPONSIVAS */
-  .banner {
-    max-height: 200px;
-    object-fit: cover;
-  }
-
-  /* 🎮 QUIZ MOBILE CONFORTÁVEL */
-  .quiz {
-    padding: 20px 10px;
-  }
-
-  .quiz h1 {
-    font-size: 1.6rem;
-  }
-
-  .quiz input {
-    width: 95%;
-    font-size: 1rem;
-  }
-
-  #answers {
-    gap: 12px;
-  }
-
-  #answers button {
-    font-size: 1rem;
-    padding: 14px;
-    border-radius: 14px;
-  }
-
-  /* PROGRESS BAR MENOR */
-  .progressBar {
-    width: 95%;
-    height: 12px;
-  }
-
-  /* FOOTER AJUSTADO */
   .footer {
-    padding: 15px;
-    font-size: 0.85rem;
-    text-align: center;
-  }
-}
-
-
-/* =============================== */
-/* 📱 CELULARES PEQUENOS */
-/* =============================== */
-@media (max-width: 480px) {
-
-  /* TOPBAR ADAPTADO */
-  .topbar {
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-  }
-
-  .topbar a {
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    max-width: 250px;
+    background: white;
+    border-top: 1px solid rgba(0,0,0,0.08);
   }
 
-  /* HERO MENOR */
-  .hero h1 {
-    font-size: 1.75rem;
+  body.dark .footer {
+    background: #141821;
   }
 
-  .hero p {
-    font-size: 0.95rem;
-  }
-
-  /* CARDS MAIS LEVES */
-  .card {
-    padding: 15px;
-  }
-
-  /* QUIZ INPUT */
-  .quiz input {
-    padding: 12px;
-    font-size: 0.95rem;
-  }
-
-  /* FOOTER MENOR */
-  .footer {
-    font-size: 0.8rem;
-  }
 }
