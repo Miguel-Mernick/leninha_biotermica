@@ -278,13 +278,87 @@ body.dark .card {
 
 @media (max-width: 768px) {
 
-  nav { display: none; }
-  .hamburger { display: block; }
+  .carousel {
+    height: 260px;
+    perspective: none; /* remove 3D pesado */
+  }
 
-  .cards { grid-template-columns: 1fr; }
+  .carousel-track {
+    transform-style: flat;
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 20px;
+  }
 
-  .hero { padding: 60px 15px; }
+  .plant-card {
+    position: relative;
+    flex: 0 0 220px;
+    top: auto;
+    left: auto;
+    transform: none !important;
+    scroll-snap-align: center;
+  }
 
+  .carousel::after {
+    display: none; /* remove luz dinâmica no mobile */
+  }
+
+  .prev, .next {
+    display: none; /* remove setas no celular */
+  }
+
+  nav {
+    display: none;
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+}
+
+@media (max-width: 900px) {
+
+  .carousel {
+    perspective: none;
+    height: auto;
+  }
+
+  .carousel-track {
+    position: relative;
+    transform: none !important;
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .plant-card {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none !important;
+    flex: 0 0 260px;
+  }
+
+  .carousel::after {
+    display: none;
+  }
+
+  .carousel-btn {
+    display: none;
+  }
+
+}
+
+.hamburger {
+  z-index: 1001;
 }
 
 /* ================= EFEITO RESPOSTA CORRETA / ERRADA ================= */
@@ -532,37 +606,3 @@ body.dark .close {
   color: #ffffff;
 }
 
-@media (max-width: 768px) {
-
-  .carousel {
-    height: 260px;
-    perspective: none; /* remove 3D pesado */
-  }
-
-  .carousel-track {
-    transform-style: flat;
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 20px;
-  }
-
-  .plant-card {
-    position: relative;
-    flex: 0 0 220px;
-    top: auto;
-    left: auto;
-    transform: none !important;
-    scroll-snap-align: center;
-  }
-
-  .carousel::after {
-    display: none; /* remove luz dinâmica no mobile */
-  }
-
-  .prev, .next {
-    display: none; /* remove setas no celular */
-  }
-
-}

@@ -26,10 +26,12 @@ applyTheme();
 const mobileBtn = document.getElementById("mobileBtn");
 const menu = document.getElementById("menu");
 
-mobileBtn.addEventListener("click", () => {
-  mobileBtn.classList.toggle("active");
-  menu.classList.toggle("active");
-});
+if (mobileBtn && menu) {
+  mobileBtn.addEventListener("click", () => {
+    mobileBtn.classList.toggle("active");
+    menu.classList.toggle("active");
+  });
+}
 
 /* ================= QUIZ (5 BIOMASSA + 5 GEOTÉRMICA) ================= */
 
@@ -268,13 +270,18 @@ function stopAutoRotate() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  updateCarouselCircle();
-  startAutoRotate();
 
-  const carousel = document.querySelector(".carousel");
-  if (carousel) {
-    carousel.addEventListener("mouseenter", stopAutoRotate);
-    carousel.addEventListener("mouseleave", startAutoRotate);
+  const cards = document.querySelectorAll(".plant-card");
+
+  if (cards.length > 0) {
+    updateCarouselCircle();
+    startAutoRotate();
+
+    const carousel = document.querySelector(".carousel");
+    if (carousel) {
+      carousel.addEventListener("mouseenter", stopAutoRotate);
+      carousel.addEventListener("mouseleave", startAutoRotate);
+    }
   }
 
   createParticles();
@@ -317,6 +324,7 @@ function closeModal() {
 
 function createParticles() {
   const container = document.getElementById("particles");
+  if (!container) return; // 🔥 impede erro
 
   for (let i = 0; i < 40; i++) {
     const particle = document.createElement("div");
@@ -328,5 +336,5 @@ function createParticles() {
 
     container.appendChild(particle);
   }
-}
+} 
 
